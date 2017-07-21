@@ -5,8 +5,6 @@ export function getAstFromMarkdown(markdownSource: string): object {
   return unified().use(markdown).parse(markdownSource);
 }
 
-export default function convertMarkdownToJson(
-  markdownSource: string
-): object {
+export default function convertMarkdownToJson(markdownSource: string): object {
   return {};
 }

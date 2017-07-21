@@ -1,18 +1,8 @@
-import * as unified from "unified";
 import * as markdown from "remark-parse";
+import * as unified from "unified";
 
-export function getAstFromMarkdown(markdownSource: string): Promise<object> {
-  return new Promise((resolve, reject) => {
-    unified()
-      .use(markdown)
-      .parse(markdownSource, function(err: null | Error, ast: object) {
-        if (err) {
-          reject(err);
-          return;
-        }
-        resolve(ast);
-      });
-  });
+export function getAstFromMarkdown(markdownSource: string): object {
+  return unified().use(markdown).parse(markdownSource);
 }
 
 export default function convertMarkdownToJson(

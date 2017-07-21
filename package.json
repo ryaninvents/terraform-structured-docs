@@ -14,7 +14,7 @@
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
-    "clean": "rimraf lib && rimraf coverage && rimraf .nyc_output && rimraf lib_test",
+    "clean": "rimraf lib && rimraf coverage && rimraf .nyc_output && rimraf lib_test/src && rimraf lib_test/test/**/*-spec.js",
     "format": "prettier --write \"{src,test}/**/*.ts\"",
     "lint": "tslint --force --format verbose \"src/**/*.ts\"",
     "prepublish": "npm run build",

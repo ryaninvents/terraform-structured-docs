@@ -7,6 +7,6 @@ export function getAstFromMarkdown(markdownSource: string): object {
 
 export default function convertMarkdownToJson(
   markdownSource: string
-): Promise<object> {
-  return Promise.resolve({});
+): object {
+  return {};
 }

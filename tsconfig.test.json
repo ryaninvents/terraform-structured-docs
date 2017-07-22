@@ -5,8 +5,13 @@
     "outDir": "lib_test",
     "declaration": false,
     "noImplicitAny": false,
+    "strictNullChecks": true,
     "removeComments": true,
-    "inlineSourceMap": true
+    "inlineSourceMap": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./@types"
+    ]
   },
   "include": [
     "test/**/*"

@@ -27,11 +27,14 @@
   },
   "dependencies": {
     "gulp": "^3.9.1",
+    "js-yaml": "^3.9.0",
     "remark-parse": "^3.0.1",
+    "remark-stringify": "^4.0.0",
     "through2-map": "^3.0.0",
     "unified": "^6.1.5"
   },
   "devDependencies": {
+    "@types/js-yaml": "^3.9.0",
     "@types/node": "^8.0.0",
     "ava": "^0.20.0",
     "coveralls": "^2.0.0",

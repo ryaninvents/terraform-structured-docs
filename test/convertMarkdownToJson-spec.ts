@@ -74,6 +74,7 @@ test("Should correctly read arguments from Markdown", t => {
     args.ami,
     {
       argumentName: "ami",
+      forcesNewResource: false,
       description: "The AMI to use for the instance.",
       isRequired: true
     },

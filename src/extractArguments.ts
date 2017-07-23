@@ -8,7 +8,7 @@ import get = require("lodash/get");
 const ARGREF_HEADER = "argument reference";
 
 /** Regex used to tell if an attribute is required or optional. */
-const REQ_OPT_REGEX = /^\s*[\\]*-?\s*\(((?:Required|Optional)(?:[^,)]*)(, Forces new \w+)?)\)/i;
+const REQ_OPT_REGEX = /^\s*[\\]*[-–]?\s*\(((?:Required|Optional)(?:[^,)]*)(, Forces new \w+)?)\)/i;
 
 export function listItemToArgument(
   node: Remark.ListItemNode

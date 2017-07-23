@@ -42,5 +42,6 @@ gulp.task('json.resources', function () {
 });
 
 gulp.task('data', ['json.resources'], function () {
-  console.log('Successfully processed ' + successfulResources + '/' + totalResources + ' resources');
+  console.log('Successfully processed ' + successfulResources + '/' + totalResources +
+    ' resources (' + (100 * successfulResources / totalResources).toFixed(1) + '%)');
 });

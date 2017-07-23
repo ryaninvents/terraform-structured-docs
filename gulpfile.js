@@ -18,8 +18,17 @@ gulp.task('json.resources', function () {
         return jsonFile;
       } catch (error) {
         jsonFile.contents = new Buffer(JSON.stringify({error: true, message: error.toString()}));
+        jsonFile.error = error.message;
         return jsonFile;
       }
+    }))
+    .pipe(filter.obj(function (file) {
+      if (file.error) {
+        console.log('Could not parse ' + file.path);
+        console.log(file.error);
+        return false;
+      }
+      return true;
     }))
     .pipe(gulp.dest('lib_data'));
 });

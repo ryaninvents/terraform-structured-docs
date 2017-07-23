@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { getAstFromMarkdown, extractResourceName, extractResourceDescription } from "../src/convertMarkdownToJson";
 import extractArguments from '../src/extractArguments';
+import extractAttributes from '../src/extractAttributes';
 
 // The path below starts at `$PROJECT_ROOT/lib_test/test`, not `$PROJECT_ROOT/test` which
 // is the current location of the test TS source. This is because, when the tests
@@ -52,4 +53,13 @@ test('Should correctly read arguments from Markdown', t => {
   }, 'Should correctly extract `ami` argument');
 
   t.snapshot(args, 'extracted arguments');
+})
+
+test('Should correctly read attributes from Markdown', t => {
+  const source = fs.readFileSync(path.resolve(__dirname, AWS_INSTANCE_FILENAME)).toString();
+  const ast = getAstFromMarkdown(source)
+
+  const attrs = extractAttributes(ast);
+
+  t.snapshot(attrs, 'extracted attributes');
 })

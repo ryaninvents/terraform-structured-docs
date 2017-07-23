@@ -4,17 +4,25 @@ var filter = require('through2-filter');
 
 var tfDocParse = require('.');
 
+var totalResources = 0;
+var successfulResources = 0;
+
 gulp.task('json.resources', function () {
   return gulp.src('terraform-website/ext/providers/*/website/docs/r/*.html.markdown', {buffer: true})
     .pipe(map.obj(function (file) {
       var jsonFile = file.clone();
       var json;
 
-      jsonFile.path = jsonFile.path.replace('.html.markdown', '.json');
+      jsonFile.path = jsonFile.path
+        .replace('website/docs/r/', '')
+        .replace('.html.markdown', '.json');
+
+      totalResources++;
 
       try {
         json = tfDocParse.default(file.contents.toString());
         jsonFile.contents = new Buffer(JSON.stringify(json, null, 2));
+        successfulResources++;
         return jsonFile;
       } catch (error) {
         jsonFile.contents = new Buffer(JSON.stringify({error: true, message: error.toString()}));
@@ -31,4 +39,8 @@ gulp.task('json.resources', function () {
       return true;
     }))
     .pipe(gulp.dest('lib_data'));
+});
+
+gulp.task('data', ['json.resources'], function () {
+  console.log('Successfully processed ' + successfulResources + '/' + totalResources + ' resources');
 });

@@ -2,6 +2,7 @@
 declare type ResourceArgument = {
   argumentName: string,
   isRequired: boolean,
+  forcesNewResource: boolean,
   description: string,
 };
 

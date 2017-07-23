@@ -8,7 +8,7 @@ import get = require("lodash/get");
 const ARGREF_HEADER = "argument reference";
 
 /** Regex used to tell if an attribute is required or optional. */
-const REQ_OPT_REGEX = /^\s*[\\]*-\s*\((Required|Optional)\)/;
+const REQ_OPT_REGEX = /^\s*[\\]*-\s*\(((?:Required|Optional)(?:[^,]*)(, Forces new \w+)?)\)/i;
 
 export function listItemToArgument(
   node: Remark.ListItemNode
@@ -42,11 +42,12 @@ export function listItemToArgument(
   if (match === null) {
     throw new Error(`Could not match ${JSON.stringify(rendered)}`);
   }
-  const [fullMatch, reqOptLabel] = match as string[];
+  const [fullMatch, reqOptLabel, forcesNewResource] = match as string[];
 
   return {
     argumentName,
-    isRequired: reqOptLabel === "Required",
+    isRequired: reqOptLabel.trim().toLowerCase().slice(0, 8) === "required",
+    forcesNewResource: Boolean(forcesNewResource),
     description: rendered.slice(fullMatch.length).trim()
   };
 }

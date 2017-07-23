@@ -12,6 +12,7 @@ declare type ResourceAttribute = {
 };
 
 declare type ResourceType = {
+  type: "resource",
   provider: string,
   resourceName: string,
   description: string,

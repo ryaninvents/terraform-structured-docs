@@ -38,6 +38,7 @@ export function extractResourceDataFromMdAst(
   const description = extractResourceDescription(ast);
   const resourceName = extractResourceName(ast);
   return {
+    type: "resource",
     provider: resourceName.split("_")[0],
     description,
     resourceName,

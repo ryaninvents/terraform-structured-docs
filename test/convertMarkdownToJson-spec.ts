@@ -21,13 +21,6 @@ test("Should produce AST from source", t => {
   t.snapshot(getAstFromMarkdown(source), "AST of markdown");
 });
 
-test("Should produce AST from AWS doc file", t => {
-  const source = fs
-    .readFileSync(path.resolve(__dirname, AWS_INSTANCE_FILENAME))
-    .toString();
-  t.snapshot(getAstFromMarkdown(source), "AST of AWS Instance documentation");
-});
-
 test("Should correctly read resource name", t => {
   const source = fs
     .readFileSync(path.resolve(__dirname, AWS_INSTANCE_FILENAME))

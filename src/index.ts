@@ -1,1 +1,1 @@
-export * from "./convertMarkdownToJson";
+module.exports = require("./convertMarkdownToJson");

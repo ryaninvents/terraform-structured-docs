@@ -1,8 +1,8 @@
 
 declare type ResourceArgument = {
   argumentName: string,
-  isRequired: boolean,
-  forcesNewResource: boolean,
+  isRequired?: boolean,
+  forcesNewResource?: boolean,
   description: string,
 };
 

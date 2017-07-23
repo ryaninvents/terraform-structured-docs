@@ -40,7 +40,10 @@ export function listItemToArgument(
   const rendered = unified().use(stringify).stringify(newNode);
   const match = REQ_OPT_REGEX.exec(rendered);
   if (match === null) {
-    throw new Error(`Could not match ${JSON.stringify(rendered)}`);
+    return {
+      argumentName,
+      description: rendered
+    };
   }
   const [fullMatch, reqOptLabel, forcesNewResource] = match as string[];
 
@@ -48,7 +51,7 @@ export function listItemToArgument(
     argumentName,
     isRequired: reqOptLabel.trim().toLowerCase().slice(0, 8) === "required",
     forcesNewResource: Boolean(forcesNewResource),
-    description: rendered.slice(fullMatch.length).trim()
+    description: rendered.trim()
   };
 }
 

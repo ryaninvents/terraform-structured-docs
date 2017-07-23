@@ -2,6 +2,7 @@ import test from "ava";
 import * as fs from 'fs';
 import * as path from 'path';
 import { getAstFromMarkdown, extractResourceName, extractResourceDescription } from "../src/convertMarkdownToJson";
+import extractArguments from '../src/extractArguments';
 
 // The path below starts at `$PROJECT_ROOT/lib_test/test`, not `$PROJECT_ROOT/test` which
 // is the current location of the test TS source. This is because, when the tests
@@ -35,3 +36,20 @@ test('Should correctly read resource description', t => {
   const description = extractResourceDescription(ast);
   t.is(description, 'Provides an EC2 instance resource. This allows instances to be created, updated, and deleted. Instances also support provisioning.', 'Should use description from YAML header');
 });
+
+test('Should correctly read arguments from Markdown', t => {
+  const source = fs.readFileSync(path.resolve(__dirname, AWS_INSTANCE_FILENAME)).toString();
+  const ast = getAstFromMarkdown(source)
+
+  const args = extractArguments(ast);
+
+  // Check a couple basic features of the extracted attributes.
+  t.is(Object.keys(args).length, 26, 'should find the correct number of arguments');
+  t.deepEqual(args.ami, {
+    argumentName: 'ami',
+    description: 'The AMI to use for the instance.',
+    isRequired: true,
+  }, 'Should correctly extract `ami` argument');
+
+  t.snapshot(args, 'extracted arguments');
+})

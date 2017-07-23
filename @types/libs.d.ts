@@ -41,8 +41,25 @@ declare namespace Remark {
 
   /** Link. */
   interface LinkNode extends Parent {
+    type: 'link',
     title: string | null,
     url: string | null,
+  }
+
+  interface ListNode extends Parent {
+    type: 'list',
+    ordered: boolean,
+    start: number | null,
+  }
+
+  interface ListItemNode extends Parent {
+    type: 'listItem',
+    loose: boolean,
+    checked: boolean | null,
+  }
+
+  interface InlineCodeNode extends Leaf {
+    type: 'inlineCode',
   }
 
   /** Generic AST node. */
@@ -52,6 +69,9 @@ declare namespace Remark {
     | ParagraphNode
     | TextNode
     | LinkNode
+    | ListNode
+    | ListItemNode
+    | InlineCodeNode
 }
 
 declare module "remark-parse"

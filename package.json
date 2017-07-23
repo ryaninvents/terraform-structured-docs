@@ -28,6 +28,7 @@
   "dependencies": {
     "gulp": "^3.9.1",
     "js-yaml": "^3.9.0",
+    "lodash": "^4.17.4",
     "remark-parse": "^3.0.1",
     "remark-stringify": "^4.0.0",
     "through2-map": "^3.0.0",
@@ -35,6 +36,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "^3.9.0",
+    "@types/lodash": "^4.14.70",
     "@types/node": "^8.0.0",
     "ava": "^0.20.0",
     "coveralls": "^2.0.0",

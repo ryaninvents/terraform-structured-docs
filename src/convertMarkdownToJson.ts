@@ -7,6 +7,8 @@ import { safeLoad } from "js-yaml";
 
 import unified = require('unified');
 
+import extractArguments from './extractArguments';
+
 export function getAstFromMarkdown(markdownSource: string): Remark.RootNode {
   return unified().use(markdown).parse(markdownSource);
 }
@@ -30,7 +32,7 @@ export function extractResourceDataFromMdAst(ast: Remark.RootNode): ResourceType
   return {
     description,
     resourceName,
-    arguments: {},
+    arguments: extractArguments(ast),
     attributes: {},
   };
 }
